@@ -1,0 +1,18 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8.8)
+
+PROJECT(MyProject CXX)
+
+FIND_PACKAGE(Trilinos REQUIRED)
+
+INCLUDE_DIRECTORIES(SYSTEM
+                    ${Trilinos_INCLUDE_DIRS}
+                    "/usr/include/eigen3/")
+
+SET(MY_EXECUTABLE "myexec")
+ADD_EXECUTABLE(${MY_EXECUTABLE} "main.cpp")
+TARGET_LINK_LIBRARIES(${MY_EXECUTABLE}
+                      ${Epetra_LIBRARIES}
+                      ${Teuchos_LIBRARIES}
+                      ${Belos_LIBRARIES}
+                      ${Galeri_LIBRARIES}
+                      ${ML_LIBRARIES})
